@@ -1,0 +1,78 @@
+//Creacion de Base de datos
+CREATE DATABASE Cerveceria;
+
+//Acceso a la base de datos
+USE Cerveceria;
+
+//Creacion de la tabla cerveza
+CREATE TABLE Cerveza (
+    idCerveza INT AUTO_INCREMENT,
+    nombreCerveza VARCHAR(20),
+    detalleCerveza VARCHAR(20),
+    idCategoria INT,
+    PRIMARY KEY (idCerveza)
+);
+
+//Verificacion de la creacion de la tabla
+DESCRIBE Cerveza;
+
+//Creacion de la tabla intermetia Cerveza_MateriaPrima
+CREATE TABLE Cerveza_MateriaPrima(
+  id INT AUTO_INCREMENT,
+  idMateriaPrima INT,
+  idCerveza INT,
+  unidades INT,
+  cantidad INT,
+  PRIMARY KEY(id)
+);
+
+//Verificacion de la creacion de la tabla
+DESCRIBE Cerveza_MateriaPrima;
+
+//Creacion de la tabla MateriaPrima
+CREATE TABLE MateriaPrima(
+  idMateria INT AUTO_INCREMENT,
+  nombreMateria VARCHAR(20),
+  detalleMateria VARCHAR(20),
+  PRIMARY KEY(idMateria)
+);
+//Verificacion de la creacion de la tabla
+DESCRIBE MateriaPrima;
+
+//Creacion de la tabla Categoria
+CREATE TABLE Categoria(
+  idCategoria INT AUTO_INCREMENT,
+  nombreCategoria VARCHAR(20),
+  nombreDetalle VARCHAR(20),
+  PRIMARY KEY(idCategoria)
+);
+//Verificacion de la creacion de la tabla
+DESCRIBE Categoria;
+
+//Creacion de la tabla Tipo_Categoria
+CREATE TABLE Tipo_Categoria(
+   idTipoCat INT AUTO_INCREMENT,
+   idTipo INT,
+   idCategoria INT,
+   PRIMARY KEY(idTipoCat)
+);
+
+//Verificacion de la creacion de la tabla
+DESCRIBE Tipo_Categoria;
+
+//Creacion de la tabla Tipo
+CREATE TABLE Tipo(
+   idTipo INT AUTO_INCREMENT,
+   nombreTipo VARCHAR(20),
+   PRIMARY KEY(idTipo)
+);
+
+//Verificacion de la creacion de la tabla
+DESCRIBE Tipo;
+
+//Se procede agregando las llaves foraneas
+ALTER TABLE Cerveza ADD CONSTRAINT fk_cerveza_categoria FOREIGN KEY (idCategoria) REFERENCES Categoria(idCategoria);
+ALTER TABLE Cerveza_MateriaPrima ADD CONSTRAINT fk_cerveza_materia FOREIGN KEY (idCerveza) REFERENCES Cerveza(idCerveza);
+ALTER TABLE Cerveza_MateriaPrima ADD CONSTRAINT fk_cerveza_materia2 FOREIGN KEY (idMateriaPrima) REFERENCES MateriaPrima(idMateria);
+ALTER TABLE Tipo_Categoria ADD CONSTRAINT fk_tipo_categoria FOREIGN KEY (idCategoria) REFERENCES Categoria(idCategoria);
+ALTER TABLE Tipo_Categoria ADD CONSTRAINT fk_tipo_categoria2 FOREIGN KEY (idTipo) REFERENCES Tipo(idTipo);
