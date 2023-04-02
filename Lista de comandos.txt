@@ -76,3 +76,9 @@ ALTER TABLE Cerveza_MateriaPrima ADD CONSTRAINT fk_cerveza_materia FOREIGN KEY (
 ALTER TABLE Cerveza_MateriaPrima ADD CONSTRAINT fk_cerveza_materia2 FOREIGN KEY (idMateriaPrima) REFERENCES MateriaPrima(idMateria);
 ALTER TABLE Tipo_Categoria ADD CONSTRAINT fk_tipo_categoria FOREIGN KEY (idCategoria) REFERENCES Categoria(idCategoria);
 ALTER TABLE Tipo_Categoria ADD CONSTRAINT fk_tipo_categoria2 FOREIGN KEY (idTipo) REFERENCES Tipo(idTipo);
+
+//Insercion de datos
+INSERT INTO Categoria (nombreCategoria, nombreDetalle) VALUES('Ceverzas Lager','Fermentacion Baja');
+INSERT INTO Categoria (nombreCategoria, nombreDetalle) VALUES('Ceverzas Ale','Fermentacion Alta');
+INSERT INTO Cerveza (nombreCerveza, detalleCerveza,idCategoria) VALUES('Heineken','Alcohol 5.0%',1);
+INSERT INTO Cerveza (nombreCerveza, detalleCerveza,idCategoria) VALUES('Club Colombia Dorada','Alcohol 4.7%',2);
